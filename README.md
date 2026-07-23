@@ -21,10 +21,10 @@ The publishable key is intentionally available to the browser. Security comes fr
 
 ## Administrator setup
 
-1. In Supabase Authentication, enable **Email / Magic Link** and add the deployed URL to the allowed redirect URLs.
-2. Sign in once from **Admin sign in** so Supabase creates the Auth user.
+1. In Supabase Authentication, enable **Email** authentication and create the administrator with an email and password.
+2. Sign in from **Admin sign in** with that email and password.
 3. Add that user's UUID to `admin_users.user_id` in the Supabase table editor.
-4. Sign out and request another magic link. Editing controls appear only when the authenticated user's UUID is present in `admin_users`.
+4. Sign out and sign in again. Editing controls appear only when the authenticated user's UUID is present in `admin_users`.
 
 Anonymous users retain read-only access. The application also relies on RLS to reject writes from anyone who is not an administrator.
 
