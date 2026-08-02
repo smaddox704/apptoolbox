@@ -49,3 +49,24 @@ npm run lint
 npm run build
 npm start
 ```
+
+## One-time Supabase setup for player photos
+
+Before deploying this version, apply the versioned migration
+`supabase/migrations/202608020001_add_player_photos.sql` once in the Supabase
+**SQL Editor** (or run `supabase db push` if this project is linked with the
+Supabase CLI). The script is safe to rerun: it adds the nullable `photo_url`
+column without changing existing rows, creates/updates the public
+`player-photos` bucket with a 5 MB image limit, and installs Storage policies
+that use the existing `admin_users` allowlist.
+
+After running it:
+
+1. Confirm **Storage → player-photos** exists and is marked public.
+2. Sign in as an existing administrator and upload a photo from **Players → Edit**.
+3. In a signed-out/private window, confirm the photo and all existing results are visible.
+
+No authentication settings, user records, players, play days, or games are
+replaced by this migration. Take a database backup before any production schema
+change. Do not create the bucket manually first; the migration owns its settings
+and policies.
