@@ -13,7 +13,7 @@ export const supabase = createClient(url, key, {
 
 export type CloudPlayer = {
   id: string; name: string; nickname: string | null; color: string;
-  is_active: boolean; created_at?: string; updated_at?: string;
+  photo_url: string | null; is_active: boolean; created_at?: string; updated_at?: string;
 };
 export type CloudGame = {
   id: string; play_day_id: string; game_number: number; player_1_id: string;
